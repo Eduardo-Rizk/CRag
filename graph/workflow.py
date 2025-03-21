@@ -4,7 +4,15 @@ from dotenv import load_dotenv
 from langgraph.graph import END, StateGraph
 
 
-from graph.nodes import retriever_node, gradeDocuments, web_search, generate
+from graph.nodes import retriever_node
+
+from graph.nodes import grade_documents
+
+from graph.nodes import web_search
+
+from graph.nodes import generate
+
+
 from graph.state import GraphState
 from graph.consts import RETRIEVE, GENERATE, GRADE_DOCUMENTS, WEBSEARCH
 
@@ -23,7 +31,7 @@ def decide_to_generate(state):
 workflow = StateGraph(GraphState)
 
 workflow.add_node(RETRIEVE, retriever_node)
-workflow.add_node(GRADE_DOCUMENTS, gradeDocuments)
+workflow.add_node(GRADE_DOCUMENTS, grade_documents)
 workflow.add_node(WEBSEARCH, web_search)
 workflow.add_node(GENERATE, generate)
 
